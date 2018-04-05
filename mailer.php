@@ -1,11 +1,6 @@
 
 <?php
-// How to add reCAPTCHA to your forms
 
-
-
-//STEP 3:
-//Paste the reCAPTCHA code on the submitted page where you want the response message to show.  -->
     function post_captcha($user_response) {
         $fields_string = '';
         $fields = array(
@@ -34,12 +29,14 @@
     if (!$res['success']) {
         // What happens when the CAPTCHA wasn't checked
         echo '<p>Please go back and make sure you check the security CAPTCHA box.</p><br>';
+
+
+
     } else {
         // If CAPTCHA is successfully completed...
      echo 'CAPTCHA was completed successfully!';
-    }
 
-    // Only process POST reqeusts.
+     // Only process POST reqeusts.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the form fields and remove whitespace.
         $name = strip_tags(trim($_POST["name"]));
@@ -54,7 +51,7 @@
             http_response_code(400);
             echo "Oops! There was a problem with your submission. Please complete the form and try again.";
             exit;
-        }
+        }else {
 
         // Set the recipient email address.
         // FIXME: Update this to your desired email address.
@@ -83,11 +80,20 @@
             echo "Oops! Something went wrong and we couldn't send your message.";
         }
 
+
+
+            
+        }
+
+
     } else {
         // Not a POST request, set a 403 (forbidden) response code.
         http_response_code(403);
         echo "There was a problem with your submission, please try again.";
     }
+    }
+
+    
 
 ?>
 
